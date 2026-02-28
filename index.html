@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #111;
+            color: #fff;
+        }
+
+        .flex {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    
+    <main class="flex">
+        <div>
+            <h1>Trump's second term will end in:</h1>
+            <p id="countdown"></p>
+        </div>
+    </main>
+
+    <script>
+
+        const endTime = new Date("2029-01-20").getTime();
+
+
+        function checkHowLongTillTermEnd() {
+            const currentTime = new Date().getTime();
+            const timeDifference = endTime - currentTime;
+
+            if (timeDifference < 0) {
+                document.getElementById("countdown").innerHTML = "DING DONG THE WICKED WITCH IS DEAD";
+                return;
+            }
+
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+            const seconds = Math.floor((timeDifference / 1000) % 60);
+
+            const countdownString = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            document.getElementById("countdown").innerHTML = countdownString;
+        }
+
+        checkHowLongTillTermEnd()
+
+        const countdown = setInterval(checkHowLongTillTermEnd, 1000);
+
+
+    </script>
+
+</body>
+
+</html>
